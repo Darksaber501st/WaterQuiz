@@ -91,7 +91,9 @@ function startGame() {
     // questionDB } from './questions.json' assert { type: 'json' };
     //import { originalQuestionDB } from './questions.json' assert { type: 'json' };
     readTextFile("./questions.json", function(text){
+        if (debugLevel > 0) { console.log(text); }
         questionDB = JSON.parse(text);
+        if (debugLevel > 0) { console.log(questionDB); }
     });
     originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
     getNewQuestions();
