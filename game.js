@@ -91,9 +91,9 @@ function startGame() {
     // questionDB } from './questions.json' assert { type: 'json' };
     //import { originalQuestionDB } from './questions.json' assert { type: 'json' };
     readTextFile("./questions.json", function(text){
-        if (debugLevel > 0) { console.log(text); }
+        //if (debugLevel > 0) { console.log(text); }
         questionDB = JSON.parse(text);
-        if (debugLevel > 0) { console.log(questionDB); }
+        //if (debugLevel > 0) { console.log(questionDB); }
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
         getNewQuestions();
     });
@@ -114,7 +114,7 @@ function readTextFile(file, callback) {
 function getNewQuestions () {
     if (questionDB.length === 0 || questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
-        throw new Error("Something went badly wrong!");
+        //throw new Error("Something went badly wrong!");
         localStorage.setItem('mostRecentScore', score); //TODO replace
         return window.location.assign('/showScores.html'); //TODO replace
     } else {
@@ -143,7 +143,7 @@ function getNewQuestions () {
                 }
             } while (usedQuestions.includes(curQuestions[questionIndex]));*/
             if (prioritizeComplete) {
-                curAvailQs = 0;
+                var curAvailQs = 0;
                 if (typeof availableQuestions !== 'undefined') {
                     curAvailQs = availableQuestions.length;
                     debugLog("VERBOSE: Setting available questions: ",curAvailQs);
