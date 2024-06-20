@@ -88,7 +88,7 @@ function getNewQuestions () {
     if (questionDB.length === 0 || questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
-        return window.location.assign('/showScores.html'); //TODO replace
+        //return window.location.assign('/showScores.html'); //TODO replace
     } else {
         debugLog("DEBUG: Getting new questions");
         questionCounter++;
