@@ -64,12 +64,8 @@ function startGame() {
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
-    // questionDB } from './questions.json' assert { type: 'json' };
-    //import { originalQuestionDB } from './questions.json' assert { type: 'json' };
     readTextFile("./questions.json", function(text){
-        //if (debugLevel > 0) { console.log(text); }
         questionDB = JSON.parse(text);
-        //if (debugLevel > 0) { console.log(questionDB); }
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
         getNewQuestions();
     });
@@ -91,7 +87,6 @@ function getNewQuestions () {
     if (questionDB.length === 0 || questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
-        localStorage.setItem('mostRecentScore', score); //TODO replace
         return window.location.assign('/showScores.html'); //TODO replace
     } else {
         debugLog("DEBUG: Getting new questions");
@@ -111,13 +106,6 @@ function getNewQuestions () {
             debugLog(`VERBOSE: curQuestions for difficulty ${(curDifficulty)}: `,curQuestions);
             var questionIndex = Math.floor(Math.random() * curQuestions.length);
             debugLog(`VERBOSE: questionIndex for difficulty ${(curDifficulty)}: `,questionIndex);
-            /*do {
-                
-                if (usedQuestions.includes(curQuestions[questionIndex])) {
-                    console.log("Need to re-roll, got question: ",curQuestions[questionIndex]);
-                    console.log("UsedQuestions: ",usedQuestions);
-                }
-            } while (usedQuestions.includes(curQuestions[questionIndex]));*/
             if (prioritizeComplete) {
                 var curAvailQs = 0;
                 if (typeof availableQuestions !== 'undefined') {
@@ -182,9 +170,9 @@ function displayQuestion() {
     centerContent= currentQuestion['centerContent'];
     correctFeedback= currentQuestion['correctFeedback'];
     incorrectFeedback= currentQuestion['incorrectFeedback'];
-    needCenter = true;
-    needCorrect = true;
-    needIncorrect = true;
+    var needCenter = true;
+    var needCorrect = true;
+    var needIncorrect = true;
     divResponse = [
         {"name": "CenterContent", "div": centerContentDiv, "default": "CenterContent!"},
         {"name": "CorrectFeedback", "div": correctFeedbackDiv, "default": "Correct!"},
