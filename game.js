@@ -85,10 +85,12 @@ function readTextFile(file, callback) {
 }
 
 function getNewQuestions () {
-    if (questionDB.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    if (questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
-        //return window.location.assign('/showScores.html'); //TODO replace
+        return window.location.assign('/showScores.html'); //TODO replace
+    } else if (questionDB.length === 0) {
+        throw new Error("Could not get questions from database!");
     } else {
         debugLog("DEBUG: Getting new questions");
         questionCounter++;
