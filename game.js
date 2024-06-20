@@ -455,5 +455,13 @@ function tsvJSON(tsv){
         debugLog(`WARNING: Skipping invalid question with text: '${currentline[0]}'`);
       }
   }
+
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(result, null, 2));
+  var dlAnchorElem = document.getElementById('downloadAnchorElem');
+  dlAnchorElem.setAttribute("href",     dataStr     );
+  dlAnchorElem.setAttribute("download", "questions.json");
+  dlAnchorElem.click();
   return result; //JSON
-}
+
+
+    }
