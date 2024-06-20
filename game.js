@@ -88,12 +88,16 @@ function getNewQuestions () {
     if (questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
+        localStorage.setItem('mostRecentScore', score); // score is the final score
         return window.location.assign('/showScores.html'); //TODO replace
     } else if (questionDB.length === 0) {
         throw new Error("Could not get questions from database!");
     } else {
         debugLog("DEBUG: Getting new questions");
         questionCounter++;
+
+        // Update the progress bar
+        progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 
         // Get all questions
         var completeQuestions = {};
@@ -173,9 +177,6 @@ function displayQuestion() {
     centerContent= currentQuestion['centerContent'];
     correctFeedback= currentQuestion['correctFeedback'];
     incorrectFeedback= currentQuestion['incorrectFeedback'];
-    /*var needCenter = true;
-    var needCorrect = true;
-    var needIncorrect = true;*/
     let divResponse = [
         {"name": "CenterContent", "div": centerContentDiv, "default": "CenterContent!"},
         {"name": "CorrectFeedback", "div": correctFeedbackDiv, "default": "Correct!"},
@@ -208,45 +209,10 @@ function displayQuestion() {
     }
     resetDisplayStyle();
     feedbackDiv.style.display = 'none';
-    //availableQuestions.splice(questionIndex, 1);
     acceptingAnswers = true;
     slider.disabled = false
 };
-/*
-function logQuestionTimeAndResult() {
-    const currentTime = new Date().getTime();
-    const preTimeSpent = currentTime - questionStartTime;
-    const postTimeSpent = currentTime - questionAnswerTime;
-    const questionIndex = originalQuestionDB.findIndex(q => q.question === currentQuestion.question);
 
-    // Log time spent, answer result, and time before moving on to next question to local storage
-    const questionLog = {
-        questionNumber: questionIndex,
-        timeSpentBefore: preTimeSpent,
-        timeSpentAfter: postTimeSpent,
-        answerResult: curResult
-    };
-
-    const outputBody = JSON.stringify(questionLog);
-    debugLog("DEBUG: Logging question time and result: ",outputBody);
-
-    fetch('saveAnalytics.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: outputBody
-    })
-    .then(response => {
-        // TODO Handle response - probably unneeded
-        if (debugLevel > 0) {console.log(response.body);}
-    })
-    .catch(error => {
-        // TODO Handle error - log to console; it's analytics so nbd
-        console.error("Error storing analytics: ",error);
-    });
-}
-*/
 choices.forEach((choice) => {
     choice.addEventListener('click', (e) => {
         if (!acceptingAnswers) return;
@@ -260,7 +226,6 @@ choices.forEach((choice) => {
         selectedChoice.parentElement.classList.add(classToApply);
         var questionResult;
         if (classToApply === 'correct') {
-            //incrementScore(difficultyDict[slider.value]['max-points']);
             incrementNumberVisually(scoreText,score,score+difficultyDict[slider.value]['max-points'],1000);
             questionResult = true;
         } else {
@@ -325,11 +290,6 @@ function changeBackgroundColor(div) {
         }
     }, interval);
 }
-/*
-incrementScore = (num) => {
-    score += num;
-    scoreText.innerText = score;
-};*/
 
 function incrementNumberVisually(targetElement, startNumber, endNumber, duration) {
     debugLog("DEBUG: Increasing score and playing sound ");
@@ -420,37 +380,3 @@ slider.oninput = function() {
     acceptingAnswers = false;
     displayQuestion();
 }
-/*
-function tsvJSON(tsv){
-  debugLog("DEBUG: Parsing response from question database");
-  var lines=tsv.split("\n");
-  var result = [];
-  var headers=lines[0].split("\t");
-  for(var i=1;i<lines.length;i++){
-      var obj = {};
-      var currentline=lines[i].split("\t");
-      doPush = true;
-      for(var j=0;j<headers.length;j++){
-          obj[headers[j]] = currentline[j];
-          if (headers[j] == "qc_valid?") {
-            if( currentline[j] == "FALSE" || currentline[j] == false) {
-                doPush = false;
-            }
-          }
-      }
-      if (doPush) {
-        result.push(obj);
-      } else {
-        debugLog(`WARNING: Skipping invalid question with text: '${currentline[0]}'`);
-      }
-  }
-
-  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(result, null, 2));
-  var dlAnchorElem = document.getElementById('downloadAnchorElem');
-  dlAnchorElem.setAttribute("href",     dataStr     );
-  dlAnchorElem.setAttribute("download", "questions.json");
-  dlAnchorElem.click();
-  return result; //JSON
-
-
-}*/
