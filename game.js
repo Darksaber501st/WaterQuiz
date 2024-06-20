@@ -170,16 +170,16 @@ function displayQuestion() {
     centerContent= currentQuestion['centerContent'];
     correctFeedback= currentQuestion['correctFeedback'];
     incorrectFeedback= currentQuestion['incorrectFeedback'];
-    var needCenter = true;
+    /*var needCenter = true;
     var needCorrect = true;
-    var needIncorrect = true;
-    divResponse = [
+    var needIncorrect = true;*/
+    let = divResponse = [
         {"name": "CenterContent", "div": centerContentDiv, "default": "CenterContent!"},
         {"name": "CorrectFeedback", "div": correctFeedbackDiv, "default": "Correct!"},
         {"name": "IncorrectFeedback", "div": incorrectFeedbackDiv, "default": "Incorrect :-("}
     ];
-    fillIns = [centerContent, correctFeedback, incorrectFeedback];
-    idx = -1;
+    let fillIns = [centerContent, correctFeedback, incorrectFeedback];
+    let idx = -1;
     debugLog("VERBOSE: Filling out question content");
     for (const elem of fillIns) {
         idx++;
