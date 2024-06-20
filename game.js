@@ -278,7 +278,7 @@ function markCorrectChoice() {
 }
 
 function stepForwards() {
-    logQuestionTimeAndResult();
+    //logQuestionTimeAndResult();
     debugLog("DEBUG: Moving on to next question");
     choices.forEach((choice) => {
         choice.parentElement.classList.remove('correct');
