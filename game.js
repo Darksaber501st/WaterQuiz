@@ -37,40 +37,13 @@ const MAX_QUESTIONS = 5;
 const TRANSITION_TIME =.2;//seconds
 const DISPLAY_TIMEOUT_MS=200;//milliseconds
 
-
 window.onload = (event) => {
   const urlParams = new URLSearchParams(window.location.search);
   debugLevel = parseInt(urlParams.get('debug')); // enables console logging
   debugLog(`DEBUG: Debug level set to: ${debugLevel}`);
   startGame();
 };
-/*
-readTSV = async () => {
-    try {
-        const target = `/getData.php`; //file
-        
-        const res = await fetch(target, {
-            method: 'get',
-            headers: {
-                'content-type': 'text/csv;charset=UTF-8',
-            }
-        });
 
-        if (res.status === 200) {
-
-            const data = await res.text();
-            questionDB = tsvJSON(data);
-            originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
-            getNewQuestions();
-
-        } else {
-            debugLog(`ERROR: Error in fetching questions, code ${res.status}`); //TODO: Add retry? Some level of "sorry, could not get questions"
-        }
-    } catch (err) {
-        console.log(err) //TODO: Add real error handling
-    }
-}
-*/
 function debugLog(message, object=null) {
     if ( message.search("ERROR") == 0) { console.error(message); if (object != null) { console.error(object); } }
     else if ( message.search("WARNING") == 0) { console.warn(message); if (object != null) { console.warn(object);} }
@@ -200,6 +173,8 @@ function displayQuestion() {
         const number = choice.dataset['number'];
         choice.innerText = currentQuestion['choice' + number];
     });
+
+    if (debugLevel > 0) { console.log(currentQuestion);}
 
     centerContent= currentQuestion['centerContent'];
     correctFeedback= currentQuestion['correctFeedback'];
