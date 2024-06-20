@@ -88,8 +88,10 @@ function startGame() {
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
-    questionDB = JSON.parse("questions.json");
-    originalQuestionDB = JSON.parse("questions.json");
+    import questionDB from './questions.json';
+    import originalQuestionDB from './questions.json';
+    /*questionDB = JSON.parse("questions.json");
+    originalQuestionDB = JSON.parse("questions.json");*/
     getNewQuestions();
 }
 
