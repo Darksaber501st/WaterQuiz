@@ -210,7 +210,7 @@ function displayQuestion() {
     acceptingAnswers = true;
     slider.disabled = false
 };
-
+/*
 function logQuestionTimeAndResult() {
     const currentTime = new Date().getTime();
     const preTimeSpent = currentTime - questionStartTime;
@@ -244,7 +244,7 @@ function logQuestionTimeAndResult() {
         console.error("Error storing analytics: ",error);
     });
 }
-
+*/
 choices.forEach((choice) => {
     choice.addEventListener('click', (e) => {
         if (!acceptingAnswers) return;
