@@ -88,13 +88,26 @@ function startGame() {
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
-    import { questionDB } from './questions.json' assert { type: 'json' };
-    import { originalQuestionDB } from './questions.json' assert { type: 'json' };
-    /*questionDB = JSON.parse("questions.json");
-    originalQuestionDB = JSON.parse("questions.json");*/
+    // questionDB } from './questions.json' assert { type: 'json' };
+    //import { originalQuestionDB } from './questions.json' assert { type: 'json' };
+    readTextFile("./questions.json", function(text){
+        questionDB = JSON.parse(text);
+    });
+    originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
     getNewQuestions();
 }
 
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
 
 function getNewQuestions () {
     if (questionDB.length === 0 || questionCounter >= MAX_QUESTIONS) {
