@@ -25,6 +25,9 @@ let prioritizeComplete = true;
 var debugLevel = 0; // 0: errors only, 1: errors and major steps, 2+: verbose
 var slider = document.getElementById("difficultyRange");
 var output = document.getElementById("difficultyValue");
+var centerContent;
+var correctFeedback;
+var incorrectFeedback;
 
 var difficultyDict ={
     1:{"label":"Easy", "displayColor":"green", "max-points":10},
