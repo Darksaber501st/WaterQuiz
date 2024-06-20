@@ -353,11 +353,11 @@ function changeBackgroundColor(div) {
         }
     }, interval);
 }
-
+/*
 incrementScore = (num) => {
     score += num;
     scoreText.innerText = score;
-};
+};*/
 
 function incrementNumberVisually(targetElement, startNumber, endNumber, duration) {
     debugLog("DEBUG: Increasing score and playing sound ");
