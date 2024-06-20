@@ -94,9 +94,9 @@ function startGame() {
         if (debugLevel > 0) { console.log(text); }
         questionDB = JSON.parse(text);
         if (debugLevel > 0) { console.log(questionDB); }
+        originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
+        getNewQuestions();
     });
-    originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
-    getNewQuestions();
 }
 
 function readTextFile(file, callback) {
