@@ -180,6 +180,7 @@ function displayQuestion() {
     ];
     let fillIns = [centerContent, correctFeedback, incorrectFeedback];
     let idx = -1;
+    var fillIn;
     debugLog("VERBOSE: Filling out question content");
     for (const elem of fillIns) {
         idx++;
