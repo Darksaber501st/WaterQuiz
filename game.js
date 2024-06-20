@@ -56,6 +56,7 @@ function debugLog(message, object=null) {
 
 function startGame() {
     debugLog("DEBUG: Starting game");
+    document.getElementById("advanceQBtn").addEventListener("click",stepForwards());
     questionCounter = 0;
     score = 0;
     game.classList.remove('hidden');
