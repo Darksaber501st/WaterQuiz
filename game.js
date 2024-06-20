@@ -173,7 +173,7 @@ function displayQuestion() {
     /*var needCenter = true;
     var needCorrect = true;
     var needIncorrect = true;*/
-    let = divResponse = [
+    let divResponse = [
         {"name": "CenterContent", "div": centerContentDiv, "default": "CenterContent!"},
         {"name": "CorrectFeedback", "div": correctFeedbackDiv, "default": "Correct!"},
         {"name": "IncorrectFeedback", "div": incorrectFeedbackDiv, "default": "Incorrect :-("}
