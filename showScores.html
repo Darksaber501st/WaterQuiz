@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Congrats!</title>
+    <link rel="stylesheet" href="appNew.css" />
+  </head>
+  <body>
+    <div class="container" style="padding-top: 6rem">
+      <div id="end" class="flex-center flex-column">
+        <h4 style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;">Thank you for taking a few minutes to learn about Denver's urban water cycle, the organizations that work in it, and how those organizations are partnering in the Denver One Water Plan to ensure a sustainable water future for Denver!</h4>
+        <div id="finalscorediv" style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;">
+          <h2 style="text-align: center">Your final score:</h2>
+          <h1 id="finalScore"></h1>
+        </div>
+        <h4 style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;">If you'd like to get news & updates about water-related topics in Denver, please give us your email below!</h4>
+        <form style="margin-top: .1rem">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Please type your email"
+            style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;"
+          />
+          
+          <button
+            type="submit"
+            class="btn"
+            id="saveScoreBtn"
+            onclick="saveHighScore()"
+            style="margin-top: .1rem"
+          >
+            Save
+          </button>
+        </form>
+        <a class="btn" style="margin-top: .1rem" href="/">Play Again</a>
+      </div>
+    </div>
+    <div id="bottom-gutter" style="padding: 2rem"></div>
+  </body>
+
+  <script>
+    const finalScore = document.getElementById('finalScore');
+    const mostRecentScore = localStorage.getItem('mostRecentScore');
+    finalScore.innerText = mostRecentScore;
+    
+    function saveHighScore() {
+        alert("Email/Score storage disabled for now, for security/testing purposes");/*
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const score = localStorage.getItem('mostRecentScore');
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'saveScore.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from the server
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send(`username=${username}&score=${score}`);*/
+    }
+  </script>
+</html>

@@ -1,0 +1,238 @@
+/* COLORS 
+#6a6d6f - Carollo grey
+#003db6 - Carollo basic blue
+#2e3543 - Carollo dark grey/blue
+#69717a - Carollo light grey/blue
+#f3f3f5 - Carollo offwhite
+#0857e3 - Carollo blue #2 lighter (button background)
+*/
+:root {
+    /*background-color: #ecf5ff; Original off-white/blue*/
+    background-color: white; /*revised*/
+    /*font-size: 62.5%;*/
+    font-size: 10pt;
+  }
+  
+  /** {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }*/
+
+  body {
+  background-image: url('landing.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size:cover;
+}
+  
+  h1,
+  h2,
+  h3,
+  h4,p {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+  }
+  
+  h1 {
+    /*font-size: 3rem;*/
+    font-size: min(12vw, 42px);
+    color: #003db6;
+  }
+  
+  h1 > span {
+  }
+  
+  h2 {
+    /*font-size: 2.2rem;*/
+    font-size: min(9vw, 36px);
+  }
+  
+  h3 {
+    /*font-size: 1.8rem;*/
+    font-size: min(8vw, 30px);
+  }
+  
+  h4 {
+    /*font-size: 1.5rem;*/
+    font-size: min(5vw, 15px);
+  }
+  
+  /* UTILITIES */
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .container > * {
+    max-width: min(500px, 100%);
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+  }
+  
+  .flex-center {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* BUTTONS */
+  /*.btn-div {
+    margin: 1.5rem;
+  }*/
+  
+  .btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: min(5vw, 15px);
+    padding: 1rem;
+    margin: .1rem;
+    max-width: 95%;
+    min-width: 50%;
+    text-align: center;
+    /*padding-left: 1rem;
+    padding-right: 1rem;*/
+    text-decoration: none;
+    border: 0.1rem solid #003db6;
+    color: white;
+    background-color: #0857e3;
+    border-radius: 1rem;
+  }
+  
+  .btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+  }
+  
+  .btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
+/* GENERAL FORMATTING */
+    p {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #003db6;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  /* 
+  .btn {
+    display: inline-block;
+    padding: 1.5rem 2.5rem;
+    margin: 1rem;
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #003db6;
+    color: white;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn:active {
+    transform: translateY(0.1rem);
+  }
+  
+  .btn:disabled {
+    background-color: #b3b3b3;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  .btn:disabled:hover {
+    background-color: #b3b3b3;
+  }
+  
+  .btn-primary {
+    background-color: #003db6;
+}
+*/
+
+
+  /* FORMS */
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input > #username{
+    margin-bottom: 1rem;
+    width: 20rem;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    border: none;
+    box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+  }
+  
+  input::placeholder {
+    color: #aaa;
+  }
+  
+  
+  
+  /* Smartphones (portrait and landscape) ----------- */
+  /*@media screen and (max-device-width: 800px) {
+    .btn {
+      font-size: 1.4rem;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+    h23 {
+      font-size: 1.2rem;
+    }
+  }*/
+  /* Smartphones (landscape) ----------- 
+  @media only screen
+  and (min-width : 321px) { }
+  /* Styles */
+  
+  
+  /* Smartphones (portrait) ----------- 
+  @media only screen
+  and (max-width : 320px) {
+
+  } */

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Denver One Water Quiz Application</title>
+        <!--<link rel="stylesheet" href="app.css" />
+        <link rel="stylesheet" href="game.css" />-->
+        <link rel="stylesheet" href="appNew.css" />
+        <link rel="stylesheet" href="gameNew.css" />
+    </head>
+
+    <body>
+        <div class="full-centered-250px" id="loaderFullContainer">
+            <div class="loader-container" id="loaderSmallContainer">
+                <!--<div class="loader"><div>-->
+                <div id="loader"></div>
+                <img src="denveronewater_logo.png" id="loaderImage">
+            </div>
+        </div>
+        <div id="game" class="justify-center flex-column hidden" style="padding-top: 10rem">
+            <div id="hud" style="background-color: white; padding: 2rem; border-radius: 2rem; column-gap: 2rem; row-gap: 1rem">
+                <p id="progressText" class="hud-header">
+                    Progress:
+                </p>
+                <p id="difficultyText" class="hud-header">
+                    Difficulty:&nbsp<span id="difficultyValue"></span>
+                </p>
+                <p id="scoreText" class="hud-header">
+                    Score:
+                </p>
+                <div id="progressBar" class="hud-content">
+                    <div id="progressBarFull"></div>
+                </div>
+                <div class="sliderContainer hud-content">
+                    <input type="range" min="1" max="3" value="1" class="slider" id="difficultyRange"><!--start on easy!-->
+                </div>
+                
+                <h1 class="hud-content" id="score">
+                    0
+                </h1>
+            </div>
+            <div id="center-item" class="center-content" style="padding: 2rem; border-radius: 2rem;">
+                <!-- Your multimedia content goes here -->
+                Center Content TBD
+            </div>
+            <h3 id="question" style="padding: 2rem; margin: 1rem; background-color: white; border-radius: 2rem;"></h3>
+            <div class="choiceGrid" id="choiceGrid" style="max-width: min(500px, 80%)">
+                <div class="choice-container">
+                    <!--<p class="choice-prefix">A</p>-->
+                    <p class="choice-text" data-number="1"></p>
+                </div>
+                <div class="choice-container">
+                    <!--<p class="choice-prefix">B</p>-->
+                    <p class="choice-text" data-number="2"></p>
+                </div>
+                <div class="choice-container">
+                    <!--<p class="choice-prefix">C</p>-->
+                    <p class="choice-text" data-number="3"></p>
+                </div>
+                <div class="choice-container">
+                    <!--<p class="choice-prefix">D</p>-->
+                    <p class="choice-text" data-number="4"></p>
+                </div>
+            </div>
+            <div id="feedbackContainer" class="center-content">
+                <div class="" style="margin: 1.5rem;">
+                    <a class="btn" onclick="stepForwards()">Next Question</a>
+                </div>
+                <div id="correctFeedback" class="center-content"></div>
+                <div id="incorrectFeedback" class="center-content"></div>
+            </div>
+            <div id="bottom-gutter" style="margin: 2rem"></div>
+        </div>
+    </body>
+    <script src="game.js"></script>
+</html>   
