@@ -44,7 +44,7 @@ window.onload = (event) => {
   debugLog(`DEBUG: Debug level set to: ${debugLevel}`);
   startGame();
 };
-
+/*
 readTSV = async () => {
     try {
         const target = `/getData.php`; //file
@@ -70,7 +70,7 @@ readTSV = async () => {
         console.log(err) //TODO: Add real error handling
     }
 }
-
+*/
 function debugLog(message, object=null) {
     if ( message.search("ERROR") == 0) { console.error(message); if (object != null) { console.error(object); } }
     else if ( message.search("WARNING") == 0) { console.warn(message); if (object != null) { console.warn(object);} }
@@ -88,7 +88,9 @@ function startGame() {
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
-    readTSV();
+    questionDB = JSON.parse("questions.json");
+    originalQuestionDB = JSON.parse("questions.json");
+    getNewQuestions();
 }
 
 
@@ -431,7 +433,7 @@ slider.oninput = function() {
     acceptingAnswers = false;
     displayQuestion();
 }
-
+/*
 function tsvJSON(tsv){
   debugLog("DEBUG: Parsing response from question database");
   var lines=tsv.split("\n");
@@ -464,4 +466,4 @@ function tsvJSON(tsv){
   return result; //JSON
 
 
-    }
+}*/
