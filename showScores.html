@@ -6,20 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Congrats!</title>
     <link rel="stylesheet" href="appNew.css" />
+    <link rel="stylesheet" href="gameNew.css" />
   </head>
   <body>
-    <div class="container" style="padding-top: 6rem">
-      <div id="end" class="flex-center flex-column">
-        <h4 style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;">Thank you for taking a few minutes to learn about Denver's urban water cycle, the organizations that work in it, and how those organizations are partnering in the Denver One Water Plan to ensure a sustainable water future for Denver!</h4>
+    <script type="module" src="responsive.js"></script>
+    <div id="top-bar" class="gutter">
+        <h4>Denver One Water Plan Learning App</h4>
+    </div>
+    <!--<div class="container">-->
+      <div id="game" class="flex-center flex-column justify-center" style="justify-content: space-around; width: 100%;">
+        <h4 style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem; max-width: min(500px,80%)">Thank you for taking a few minutes to learn about Denver's urban water cycle, the organizations that work in it, and how those organizations are partnering in the Denver One Water Plan to ensure a sustainable water future for Denver!</h4>
         <div id="finalscorediv" style="text-align: center; background-color: white; margin: .1rem; padding: 1rem; border-radius: 2rem;">
           <h2 style="text-align: center">Your final score:</h2>
           <h1 id="finalScore"></h1>
         </div>
         <a class="btn" style="margin-top: .1rem" href="/">Play Again</a>
       </div>
-    </div>
-    <div id="bottom-gutter" style="margin: 2rem; font-size: 8pt">
-        TERMS & CONDITIONS: This is a developmental application, questions and content may change over time. The content is not reflective of the opinions or interests of the entities involved in the Denver One Water Plan.
+    <!--</div>--->
+    
+    <div id="bottom-bar" class="gutter" style="bottom: 0; position: absolute;">
+      <h6>
+          TERMS & CONDITIONS: This is a developmental application, questions and content may change over time. The content is not necessarily reflective of the opinions or interests of the entities involved in the Denver One Water Plan.
+      </h6>
     </div>
   </body>
 

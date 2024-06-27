@@ -28,6 +28,7 @@ var output = document.getElementById("difficultyValue");
 var centerContent;
 var correctFeedback;
 var incorrectFeedback;
+var gameColStatus = "single";
 
 var difficultyDict ={
     1:{"label":"Easy", "displayColor":"green", "max-points":10},
@@ -36,16 +37,47 @@ var difficultyDict ={
 }
 
 //CONSTANTS
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 6;
 const TRANSITION_TIME =.2;//seconds
 const DISPLAY_TIMEOUT_MS=200;//milliseconds
 
+
+window.addEventListener("resize", checkGutterHeight);
 window.onload = (event) => {
   const urlParams = new URLSearchParams(window.location.search);
   debugLevel = parseInt(urlParams.get('debug')); // enables console logging
   debugLog(`DEBUG: Debug level set to: ${debugLevel}`);
-  startGame();
+  centeredContainer.classList.add('hidden');
+  //loaderContainer.classList.add('hidden');
+  document.getElementById("instructionsOverlayOuter").classList.remove('hidden');
+           
+  document.getElementById("startGameBtn").addEventListener("click", function() {
+    document.getElementById("instructionsOverlayOuter").classList.add('hidden');
+    startGame();
+  });
+  checkGutterHeight();
 };
+
+// Fixes gutter heights for flexbox layout
+function checkGutterHeight() {
+    const bottombar = document.getElementById("bottom-bar");
+    const topbar = document.getElementById("top-bar");
+    const heightB = bottombar.offsetHeight;
+    const heightT = topbar.offsetHeight;
+    const heightG = window.screen.height - heightB - heightT;
+
+    game.style.height = heightG + "px";
+}
+
+function fixFlexBox() {
+    console.log("Current scrollHeight: " + game.scrollHeight);
+    console.log("Current offsetHeight: " + game.offsetHeight);
+    console.log("Current styleheight: " + game.style.height);
+    var newScale = game.offsetHeight/game.scrollHeight;
+    if (newScale < 1) { newScale = newScale * .9; }
+    console.log("Needed scale: " + newScale);
+    game.style.transform = "scale(" + newScale + ")";
+}
 
 function debugLog(message, object=null) {
     if ( message.search("ERROR") == 0) { console.error(message); if (object != null) { console.error(object); } }
@@ -60,8 +92,6 @@ function startGame() {
     questionCounter = 0;
     score = 0;
     game.classList.remove('hidden');
-    centeredContainer.classList.add('hidden');
-    loaderContainer.classList.add('hidden');
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
@@ -207,10 +237,10 @@ function displayQuestion() {
             divResponse[idx]["div"].innerText = divResponse[idx]["default"];
         }
     }
-    resetDisplayStyle();
     feedbackDiv.style.display = 'none';
+    resetDisplayStyle();
     acceptingAnswers = true;
-    slider.disabled = false
+    slider.disabled = false;
 };
 
 choices.forEach((choice) => {
@@ -270,6 +300,7 @@ function showFeedback(questionResult) {
     }
     acceptingAnswers = false;
     slider.disabled = true
+    //fixFlexBox();
 }
 
 function changeBackgroundColor(div) {
@@ -315,11 +346,11 @@ function incrementNumberVisually(targetElement, startNumber, endNumber, duration
 function hideForFeedback() {
     debugLog("DEBUG: Hiding elements for feedback");
     var elementsToFadeOut = [
-        centerContentDiv,
+        //centerContentDiv,
         progressText,
         document.getElementById('progressBar'),
         document.getElementById('difficultyText'),
-        document.getElementById('difficultyRange')
+        document.getElementById('sliderContainer')
     ];
 
     choices.forEach((choice) => {
@@ -335,6 +366,8 @@ function hideForFeedback() {
     });
     
     document.getElementById('choiceGrid').style.display = 'flex';
+    switchToTwoColumnLayoutIfNeeded();
+    fixFlexBox();
 };
 
 function highlightScore(toggle) {
@@ -352,11 +385,11 @@ function highlightScore(toggle) {
 function resetDisplayStyle() {
     debugLog("DEBUG: Resetting display");
     const elementsToFadeIn = [
-        centerContentDiv,
+        //centerContentDiv,
         progressText,
         document.getElementById('progressBar'),
         document.getElementById('difficultyText'),
-        document.getElementById('difficultyRange'),
+        document.getElementById('sliderContainer'),
         document.getElementById('choiceGrid')
     ];
 
@@ -371,6 +404,8 @@ function resetDisplayStyle() {
         element.style.display = null;
      });
      highlightScore(false);
+     revertToSingleColumnLayoutIfNeeded();
+     fixFlexBox();
 }
 
 slider.oninput = function() {
@@ -379,4 +414,120 @@ slider.oninput = function() {
     //adjust question
     acceptingAnswers = false;
     displayQuestion();
+}
+
+function getScreenRotation() {
+    if (window.matchMedia("(orientation: portrait)").matches) {
+        return "portrait";
+    } else if (window.matchMedia("(orientation: landscape)").matches) {
+        return "landscape";
+    } else {
+        return "unknown";
+    }
+}
+
+function switchToTwoColumnLayoutIfNeeded() {
+    const curRot = getScreenRotation();
+    if (curRot === "landscape" && gameColStatus === "single") {
+        game.classList.remove('flex-column');
+        // Create left column div
+        const leftColumnDiv = document.createElement('div');
+        leftColumnDiv.id = 'leftColumn';
+        leftColumnDiv.classList.add('flex-column','justify-center','split-col');
+        leftColumnDiv.style.float = 'left';
+        leftColumnDiv.style.width = '50%';
+
+        // Create right column div
+        const rightColumnDiv = document.createElement('div');
+        rightColumnDiv.id = 'rightColumn';
+        rightColumnDiv.classList.add('flex-column','justify-center','split-col');
+        rightColumnDiv.style.float = 'right';
+        rightColumnDiv.style.width = '50%';
+
+        // Move all elements except the feedback container to the left column
+        const gameChildren = game.children;
+        var idArray = [];
+        for (var child of gameChildren) {
+            idArray.push(child.id);
+        }
+        const numKids = gameChildren.length
+        var move;
+        for (var child of idArray) {
+            move = true;
+            if (child === 'feedbackContainer') {
+                move = false;
+            }
+            if (move) {
+                console.log("Moving child: ",child);
+                leftColumnDiv.appendChild(document.getElementById(child));
+            } else {
+                console.log("Skipping feedback container");
+            }
+        }
+
+        // Move the feedback container to the right column
+        const feedbackContainer = document.getElementById('feedbackContainer');
+        console.log("Moving feedback container");
+        rightColumnDiv.appendChild(feedbackContainer);
+
+        // Clear the game div
+        game.innerHTML = '';
+
+        // Append the left and right columns to the game div
+        game.appendChild(leftColumnDiv);
+        game.appendChild(rightColumnDiv);
+        var elements = document.getElementsByClassName('hud-element');
+        const hud = document.getElementById('hud');
+        //hud.style.removeProperty('grid-template-columns');
+        hud.style.setProperty('grid-template-columns','1fr');
+        for (var element of elements) {
+            //element.style.setProperty('max-width','25%');
+        }
+        /*document.getElementById('correctFeedback').classList.add('flex-row');
+        document.getElementById('incorrectFeedback').classList.add('flex-row');*/
+        gameColStatus = "double";
+    } else {
+
+    }
+}
+
+function revertToSingleColumnLayoutIfNeeded() {
+    const curRot = getScreenRotation();
+    if (curRot === "landscape" && gameColStatus === "double") {
+        const gameChildren = game.children;
+        const leftColumnDiv = document.getElementById('leftColumn');
+        const rightColumnDiv = document.getElementById('rightColumn');
+
+        
+        const leftChildren = leftColumnDiv.children;
+        const rightChildren = rightColumnDiv.children;
+
+        // Move all elements from the columns back to the game div
+        while (leftColumnDiv.firstChild) {
+            console.log("Moving child: ",leftColumnDiv.firstChild.id);
+            game.appendChild(leftColumnDiv.firstChild);
+        }
+        while (rightColumnDiv.firstChild) {
+            console.log("Moving child: ",rightColumnDiv.firstChild.id);
+            game.appendChild(rightColumnDiv.firstChild);
+        }
+
+        /*document.getElementById('correctFeedback').classList.remove('flex-row');
+        document.getElementById('incorrectFeedback').classList.remove('flex-row');*/
+        game.classList.add('flex-column');
+        const hud = document.getElementById('hud');
+        //hud.style.removeProperty('grid-auto-columns');
+        //hud.style.removeProperty('grid-template-columns');
+        hud.style.setProperty('grid-template-columns','1fr 1fr 1fr');
+        var elements = document.getElementsByClassName('hud-element');
+        for (var element of elements) {
+            //element.style.removeProperty('max-width');
+        }
+        // delete the columns from the DOM
+        leftColumnDiv.remove();
+        rightColumnDiv.remove();
+        gameColStatus = "single";
+    } else {
+
+    }
 }

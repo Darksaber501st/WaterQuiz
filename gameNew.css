@@ -24,7 +24,12 @@
     width: 100%;
     grid-area: main;*/
     display: flex;
+    max-width: 30vw;
     justify-content: center;
+  }
+
+  .hud-element {
+    width: 22vw;
   }
 
   #progressBar {
@@ -42,13 +47,9 @@
   
 /* QUESTIONS */
 
-#question {
-    text-align: center;
-}
-
 .choice-container {
     display: flex;
-    width: 100%;
+    /*width: 100%;*/
     border: 0.1rem solid rgb(86, 165, 235, 0.25);
     background-color: white;
     justify-content: center;
@@ -71,39 +72,60 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: min(6vw, 24px);
+    /*font-size: min(6vw, 24px);*/
   }
 
   .center-content-top {
     /*display: none;*/
   }
+
   .center-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    text-align: center;
+    color: black;
+  }
+
+  .one-marg {
+    /*margin: 1rem;*/
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+  }
+
+  .one-pad {
+    padding: 1rem;
+  }
+
+  .other {
     font-size: min(5vw, 15px);
     margin: 1rem;
     padding: 1rem;
-    border-radius: 2rem;
-    background-color: white;
-    color: black;
-    max-width: min(500px, 80%);
   }
   
- #game > h3 {
-    max-width: min(500px, 90%);
+  .feedback-container {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
 
+ #game > h3 {
+    max-width: min(500px, 80%);
  }
 
-  .center-content > img {
+  .feedback-container > img {
     max-width: min(500px, 100%);
     height: auto;
     border-radius: 2rem;
-  }
-
-  .center-content > p {
-    max-width: min(500px, 80%);
   }
 
   .correct {
@@ -115,7 +137,7 @@
   }
    
   .choiceGrid {
-    min-width: min(500px, 90%);
+    min-width: min(500px, 80%);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
@@ -123,17 +145,13 @@
 
 
 /* Feedback */
-.full-centered-250px {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 250px;
-    height: 250px;
-    transform: translate(-50%, -50%);
-    transform: -webkit-translate(-50%, -50%);
-    transform: -moz-translate(-50%, -50%);
-    transform: -ms-translate(-50%, -50%);
-  }
+#feedbackContainer > * > img {
+  display: none;
+}
+
+.split-col {
+  height: 100%;
+}
   
 /* LOADER */
 .full-centered-250px {
@@ -141,6 +159,7 @@
     top: 50%;
     left: 50%;
     width: 250px;
+    /*width: 100%;*/
     height: 250px;
     transform: translate(-50%, -50%);
     transform: -webkit-translate(-50%, -50%);
@@ -148,11 +167,11 @@
     transform: -ms-translate(-50%, -50%);
   }
 .loader-container {
-    width: 250px;
-    height: 250px;
-    display: inline-block;
-    overflow: hidden;
-  }
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+  overflow: hidden;
+}
 
 #loader {
     position: fixed;
@@ -184,10 +203,15 @@
     }
   }
 
-  @media screen and (max-device-width: 480px) {
+  @media screen and (orientation: landscape) {
+    /* CSS rules for landscape orientation */
+  }
+
+  @media screen and (orientation: portrait) {
+    /* CSS rules for portrait orientation */
     .choiceGrid {
-        min-width: 95%;
-        display: grid;
-        grid-template-columns: 1fr;
-    }
+      min-width: 95%;
+      display: grid;
+      grid-template-columns: 1fr;
+  }
 }
