@@ -30,6 +30,8 @@
     /*background-color: #003db6;
     color: white;
     background-color: #003db6;*/
+    display: flex;
+    flex-direction: row;
     color: #003db6;
     background-color: white;
     padding: 1rem;
