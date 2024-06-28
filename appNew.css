@@ -23,14 +23,17 @@
     background-image: url('landing2.png');
     background-repeat: no-repeat;
     background-position: center top;
-    background-size:cover;*/
+    background-size:cover;
 }
 
   .gutter {
-    background-color: #003db6;
+    /*background-color: #003db6;
+    color: white;
+    background-color: #003db6;*/
+    color: #003db6;
+    background-color: white;
     padding: 1rem;
     text-align: center;
-    color: white;
   }
   /*#bottom-bar {
     bottom: 0;
