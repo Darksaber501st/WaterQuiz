@@ -37,6 +37,7 @@
     background-color: white;
     padding: 1rem;
     text-align: center;
+    border: 1px solid #003db6;
   }
   /*#bottom-bar {
     bottom: 0;

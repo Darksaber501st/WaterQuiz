@@ -72,6 +72,7 @@ function checkGutterHeight() {
 function fixFlexBox() {
     var newScale = game.offsetHeight/game.scrollHeight;
     if (newScale < 1) { newScale = newScale * .9; }
+    console.log("New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
 
