@@ -70,12 +70,8 @@ function checkGutterHeight() {
 }
 
 function fixFlexBox() {
-    console.log("Current scrollHeight: " + game.scrollHeight);
-    console.log("Current offsetHeight: " + game.offsetHeight);
-    console.log("Current styleheight: " + game.style.height);
     var newScale = game.offsetHeight/game.scrollHeight;
     if (newScale < 1) { newScale = newScale * .9; }
-    console.log("Needed scale: " + newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
 
