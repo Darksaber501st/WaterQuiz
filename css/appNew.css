@@ -20,7 +20,7 @@
   body {
     margin: 0;
     padding: 0;
-    background-image: url('landing2.png');
+    background-image: url('../images/landing2.png');
     background-repeat: no-repeat;
     background-position: center top;
     background-size:cover;

@@ -91,7 +91,7 @@ function startGame() {
     output.innerHTML = difficultyDict[slider.value]['label'];
     output.style.color = difficultyDict[slider.value]['displayColor'];
     debugLog("DEBUG: Getting question data from database");
-    readTextFile("./questions.json", function(text){
+    readTextFile("../assets/questions.json", function(text){
         questionDB = JSON.parse(text);
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
         getNewQuestions();
@@ -320,7 +320,7 @@ function changeBackgroundColor(div) {
 
 function incrementNumberVisually(targetElement, startNumber, endNumber, duration) {
     debugLog("DEBUG: Increasing score and playing sound ");
-    var audio = new Audio('success.mp3');
+    var audio = new Audio('../assets/success.mp3');
     audio.play();
     highlightScore(true);
     const interval = 50; // 50 milliseconds

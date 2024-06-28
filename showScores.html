@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Congrats!</title>
-    <link rel="stylesheet" href="appNew.css" />
-    <link rel="stylesheet" href="gameNew.css" />
+    <link rel="stylesheet" href="/css/appNew.css" />
+    <link rel="stylesheet" href="/css/gameNew.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -18,10 +18,10 @@
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
-    <script type="module" src="responsive.js"></script>
+    <script type="module" src="/js/responsive.js"></script>
     <div id="top-bar" class="gutter">
         <h4>Denver One Water Plan Learning App</h4>
-        <img src="denveronewater_logo_full.png" alt="Denver One Water Logo" style="height: 50px; width: auto;">
+        <img src="/images/denveronewater_logo_full.png" alt="Denver One Water Logo" style="height: 50px; width: auto;">
     </div>
     <!--<div class="container">-->
       <div id="game" class="flex-center flex-column justify-center" style="justify-content: space-around; width: 100%;">
@@ -40,29 +40,4 @@
       </h6>
     </div>
   </body>
-
-  <script>
-    const finalScore = document.getElementById('finalScore');
-    const mostRecentScore = localStorage.getItem('mostRecentScore');
-    finalScore.innerText = mostRecentScore;
-    
-    function saveHighScore() {
-        alert("Email/Score storage disabled for now, for security/testing purposes");/*
-        event.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const score = localStorage.getItem('mostRecentScore');
-        
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'saveScore.php', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Handle the response from the server
-                console.log(xhr.responseText);
-            }
-        };
-        xhr.send(`username=${username}&score=${score}`);*/
-    }
-  </script>
 </html>
