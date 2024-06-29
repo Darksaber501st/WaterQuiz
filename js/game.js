@@ -73,6 +73,7 @@ function fixFlexBox() {
     var newScale = game.offsetHeight/game.scrollHeight;
     console.log("Offset Height: ",game.offsetHeight);
     console.log("Scroll Height: ",game.scrollHeight);
+    console.log("JQuery OuterHeight: ",$('#game').outerHeight(true));
     console.log("New scale: ",newScale);
     newScale = newScale * .95;
     console.log("FS New scale: ",newScale);
