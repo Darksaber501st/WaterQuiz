@@ -75,7 +75,7 @@ function fixFlexBox() {
     console.log("Offset Height: ",game.offsetHeight);
     console.log("Scroll Height: ",game.scrollHeight);
     console.log("New scale: ",newScale);
-    newScale = newScale * .95;
+    newScale = newScale * .9;
     console.log("FS New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
