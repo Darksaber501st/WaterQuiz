@@ -29,7 +29,7 @@
   }
 
   .hud-element {
-    width: 22vw;
+    width: min(22vw,200px);
   }
 
   #progressBar {
@@ -73,10 +73,6 @@
     align-items: center;
     text-align: center;
     /*font-size: min(6vw, 24px);*/
-  }
-
-  .center-content-top {
-    /*display: none;*/
   }
 
   .center-content {

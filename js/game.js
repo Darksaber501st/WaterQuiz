@@ -78,14 +78,6 @@ function fixFlexBox() {
     newScale = newScale * .95;
     console.log("FS New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
-
-    const bottombar = document.getElementById("bottom-bar");
-    const topbar = document.getElementById("top-bar");
-    const heightB = bottombar.offsetHeight;
-    const heightT = topbar.offsetHeight;
-    const heightG = window.screen.height - heightB - heightT;
-    console.log("Estimated available height: ",heightG);
-    console.log("Estimated needed scale: ",game.scrollHeight/heightG*.95);
 }
 
 function debugLog(message, object=null) {
