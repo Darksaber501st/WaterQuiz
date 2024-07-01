@@ -22,6 +22,7 @@ let usedQuestions = [];
 let questionDB = [];
 var originalQuestionDB;
 let prioritizeComplete = true;
+let onlyComplete = true;
 var debugLevel = 0; // 0: errors only, 1: errors and major steps, 2+: verbose
 var slider = document.getElementById("difficultyRange");
 var output = document.getElementById("difficultyValue");
@@ -133,8 +134,12 @@ function getNewQuestions () {
         // Get all questions
         var completeQuestions = {};
         for (const curDifficulty in {'Easy':1,'Medium':2,'Hard':3}){
+            var curCompleteQuestions;
             var curQuestions = questionDB.filter(function(item){ return item.difficulty==curDifficulty;});
-            var curCompleteQuestions = curQuestions.filter(function(item){ return item['qc_valid?']=="FULL";});
+            if (onlyComplete) {
+                curQuestions = curQuestions.filter(function(item){ return item['qc_valid?']=="FULL";});
+            }
+            curCompleteQuestions = curQuestions.filter(function(item){ return item['qc_valid?']=="FULL";});
             completeQuestions[curDifficulty]=curCompleteQuestions.length;
         }
         debugLog("VERBOSE: Complete questions: ",completeQuestions);
@@ -170,7 +175,6 @@ function getNewQuestions () {
         questionStartTime= new Date().getTime();
     }
 };
-
 
 function isStringValidHtml(html, mimeType) {
     debugLog(`VERBOSE: Checking validity of provided content: ${html}`);
