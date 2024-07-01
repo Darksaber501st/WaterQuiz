@@ -6,8 +6,11 @@ function checkGutterHeight() {
     const heightB = bottombar.offsetHeight;
     const heightT = topbar.offsetHeight;
     const heightG = window.screen.height - heightB - heightT;
-
-    game.style.height = heightG + "px";
+    if (window.screen.height > 600) {
+        game.style.height = heightG*.8 + "px";
+    } else {
+        game.style.height = heightG*.95 + "px";
+    }
 }
 
 window.onload = (event) => {
