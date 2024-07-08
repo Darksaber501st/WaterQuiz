@@ -47,6 +47,12 @@
   
 /* QUESTIONS */
 
+#question {
+  background-color:powderblue;
+  color:#003db6;
+  border:1 px solid #003db6;
+}
+
 .choice-container {
     display: flex;
     width: 100%;
