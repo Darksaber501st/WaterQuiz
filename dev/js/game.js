@@ -96,7 +96,7 @@ function startGame() {
     readTextFile("../assets/questions.json", function(text){
         questionDB = JSON.parse(text);
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
-        getNewQuestions();
+        getNewQuestions(true);
     });
 }
 
@@ -112,7 +112,7 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
-function getNewQuestions () {
+function getNewQuestions (initial=false) {
     if (questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
@@ -168,14 +168,16 @@ function getNewQuestions () {
         }
         debugLog("Final question set this round: ",availableQuestions);
         displayQuestion();
-        startTutorial();
+        if (initial) {
+            startTutorial();
+        }
         questionStartTime= new Date().getTime();
     }
 };
 
 function startTutorial() {
     console.log("Starting tutorial");
-    introJs().setOption("dontShowAgain", true).setOption("isActive", false).start();
+    introJs().start();
 }
 
 function isStringValidHtml(html, mimeType) {
@@ -511,11 +513,11 @@ function revertToSingleColumnLayoutIfNeeded() {
 
         // Move all elements from the columns back to the game div
         while (leftColumnDiv.firstChild) {
-            console.log("Moving child: ",leftColumnDiv.firstChild.id);
+            //console.log("Moving child: ",leftColumnDiv.firstChild.id);
             game.appendChild(leftColumnDiv.firstChild);
         }
         while (rightColumnDiv.firstChild) {
-            console.log("Moving child: ",rightColumnDiv.firstChild.id);
+            //console.log("Moving child: ",rightColumnDiv.firstChild.id);
             game.appendChild(rightColumnDiv.firstChild);
         }
 
