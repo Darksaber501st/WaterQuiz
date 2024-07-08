@@ -73,11 +73,11 @@ function checkGutterHeight() {
 
 function fixFlexBox() {
     var newScale = game.offsetHeight/game.scrollHeight;
-    console.log("Offset Height: ",game.offsetHeight);
-    console.log("Scroll Height: ",game.scrollHeight);
-    console.log("New scale: ",newScale);
+    //console.log("Offset Height: ",game.offsetHeight);
+    //console.log("Scroll Height: ",game.scrollHeight);
+    //console.log("New scale: ",newScale);
     newScale = newScale * .9;
-    console.log("FS New scale: ",newScale);
+    //console.log("FS New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
 
@@ -101,7 +101,6 @@ function startGame() {
         questionDB = JSON.parse(text);
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
         getNewQuestions();
-        $(document).foundation();
     });
 }
 
@@ -173,9 +172,15 @@ function getNewQuestions () {
         }
         debugLog("Final question set this round: ",availableQuestions);
         displayQuestion();
+        startTutorial();
         questionStartTime= new Date().getTime();
     }
 };
+
+function startTutorial() {
+    console.log("Starting tutorial");
+    $(document).foundation();
+}
 
 function isStringValidHtml(html, mimeType) {
     debugLog(`VERBOSE: Checking validity of provided content: ${html}`);
