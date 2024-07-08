@@ -48,9 +48,9 @@
 /* QUESTIONS */
 
 #question {
-  background-color:powderblue;
+  background-color:aliceblue;
   color:#003db6;
-  border:1 px solid #003db6;
+  border:1px solid #003db6;
 }
 
 .choice-container {
