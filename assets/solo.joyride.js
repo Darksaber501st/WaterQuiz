@@ -1580,7 +1580,7 @@
   * @function
   * @private
   */
-  $(window).load(function () {
+  $(window).on('load',function () {
     checkListeners();
   });
 
