@@ -172,7 +172,7 @@ function getNewQuestions () {
         }
         debugLog("Final question set this round: ",availableQuestions);
         displayQuestion();
-        startTutorial();
+        //startTutorial();
         questionStartTime= new Date().getTime();
     }
 };
