@@ -101,6 +101,7 @@ function startGame() {
         questionDB = JSON.parse(text);
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
         getNewQuestions();
+        $(document).foundation();
     });
 }
 

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="game.css" />-->
         <link rel="stylesheet" href="/css/appNew.css" />
         <link rel="stylesheet" href="/css/gameNew.css" />
+        <link rel="stylesheet" href="/css/solo.joyride.min.css" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -21,6 +22,11 @@
     </head>
 
     <script type="module" src="/js/game.js"></script>
+    <script src="/js/solo.joyride.min.js" type="text/javascript"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+        crossorigin="anonymous"></script>
     <body>
         <a id="downloadAnchorElem" style="display:none"></a>
         <div class="full-centered-250px" id="loaderFullContainer">
@@ -86,6 +92,30 @@
                 <div id="incorrectFeedback" class="feedback-container"></div>
             </div>
         </div>
+
+        <!-- Joyride list -->
+        <ol data-joyride data-autostart="false" id="docs-joyride">
+            <li data-target="#score" data-next-text="Next" data-prev-text="Previous">
+            <h3>Score</h3>
+            <p>This is your current score</p>
+            </li>
+            <li data-target="#sliderContainer" data-next-text="Next" data-prev-text="Previous">
+            <h3>Difficulty</h3>
+            <p>You can change the difficulty here</p>
+            </li>
+            <li data-target="#question" data-next-text="Next" data-prev-text="Previous">
+            <h3>Question</h3>
+            <p>Each question will come up here, as text.</p>
+            </li>
+            <li data-target="#choiceGrid" data-prev-text="Previous"></li>
+            <h3>Choices</h3>
+            <p>Do your best!</p>
+            <p class="text-center">
+                <button class="button success" data-joyride-close>OK, thanks!</button>
+            </p>
+            </li>
+        </ol>
+
         <div id="bottom-bar" class="gutter">
             <h6>
                 TERMS & CONDITIONS: This is a developmental application, questions and content may change over time. The content is not necessarily reflective of the opinions or interests of the entities involved in the Denver One Water Plan.
