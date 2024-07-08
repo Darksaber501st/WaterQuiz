@@ -51,7 +51,7 @@ window.onload = (event) => {
   centeredContainer.classList.add('hidden');
   //loaderContainer.classList.add('hidden');
   document.getElementById("instructionsOverlayOuter").classList.remove('hidden');
-           
+
   document.getElementById("startGameBtn").addEventListener("click", function() {
     document.getElementById("instructionsOverlayOuter").classList.add('hidden');
     startGame();
@@ -73,11 +73,7 @@ function checkGutterHeight() {
 
 function fixFlexBox() {
     var newScale = game.offsetHeight/game.scrollHeight;
-    //console.log("Offset Height: ",game.offsetHeight);
-    //console.log("Scroll Height: ",game.scrollHeight);
-    //console.log("New scale: ",newScale);
     newScale = newScale * .9;
-    //console.log("FS New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
 
@@ -100,7 +96,7 @@ function startGame() {
     readTextFile("../assets/questions.json", function(text){
         questionDB = JSON.parse(text);
         originalQuestionDB = JSON.parse(JSON.stringify(questionDB)); // ugly but works on old browsers. structuredClone is too new to be reliable
-        getNewQuestions();
+        getNewQuestions(true);
     });
 }
 
@@ -116,7 +112,7 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
-function getNewQuestions () {
+function getNewQuestions (initial=false) {
     if (questionCounter >= MAX_QUESTIONS) {
         debugLog("DEBUG: Game over, moving to score page");
         //throw new Error("Something went badly wrong!");
@@ -172,14 +168,16 @@ function getNewQuestions () {
         }
         debugLog("Final question set this round: ",availableQuestions);
         displayQuestion();
-        //startTutorial();
+        if (initial) {
+            startTutorial();
+        }
         questionStartTime= new Date().getTime();
     }
 };
 
 function startTutorial() {
     console.log("Starting tutorial");
-    $(document).foundation();
+    introJs().start();
 }
 
 function isStringValidHtml(html, mimeType) {
@@ -469,10 +467,10 @@ function switchToTwoColumnLayoutIfNeeded() {
                 move = false;
             }
             if (move) {
-                console.log("Moving child: ",child);
+                //console.log("Moving child: ",child);
                 leftColumnDiv.appendChild(document.getElementById(child));
             } else {
-                console.log("Skipping feedback container");
+                //console.log("Skipping feedback container");
             }
         }
 
@@ -515,11 +513,11 @@ function revertToSingleColumnLayoutIfNeeded() {
 
         // Move all elements from the columns back to the game div
         while (leftColumnDiv.firstChild) {
-            console.log("Moving child: ",leftColumnDiv.firstChild.id);
+            //console.log("Moving child: ",leftColumnDiv.firstChild.id);
             game.appendChild(leftColumnDiv.firstChild);
         }
         while (rightColumnDiv.firstChild) {
-            console.log("Moving child: ",rightColumnDiv.firstChild.id);
+            //console.log("Moving child: ",rightColumnDiv.firstChild.id);
             game.appendChild(rightColumnDiv.firstChild);
         }
 
