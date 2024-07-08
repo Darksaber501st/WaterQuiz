@@ -91,7 +91,7 @@
   }
 
   h6 {
-    font-size: min(2.5vw, 2.5vh, 15px);
+    font-size: min(2vw, 2vh, 12px);
   }
   
   /* UTILITIES */
