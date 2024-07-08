@@ -175,7 +175,7 @@ function getNewQuestions () {
 
 function startTutorial() {
     console.log("Starting tutorial");
-    //introJs().setOption("dontShowAgain", true).start();
+    introJs().setOption("dontShowAgain", true).setOption("isActive", false).start();
 }
 
 function isStringValidHtml(html, mimeType) {
