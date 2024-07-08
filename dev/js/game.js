@@ -59,9 +59,6 @@ window.onload = (event) => {
   checkGutterHeight();
 };
 
-
-
-
 // Fixes gutter heights for flexbox layout
 function checkGutterHeight() {
     const bottombar = document.getElementById("bottom-bar");
@@ -76,11 +73,7 @@ function checkGutterHeight() {
 
 function fixFlexBox() {
     var newScale = game.offsetHeight/game.scrollHeight;
-    //console.log("Offset Height: ",game.offsetHeight);
-    //console.log("Scroll Height: ",game.scrollHeight);
-    //console.log("New scale: ",newScale);
     newScale = newScale * .9;
-    //console.log("FS New scale: ",newScale);
     game.style.transform = "scale(" + newScale + ")";
 }
 
@@ -182,7 +175,6 @@ function getNewQuestions () {
 
 function startTutorial() {
     console.log("Starting tutorial");
-    introJs().start();
     introJs().setOption("dontShowAgain", true).start();
 }
 
